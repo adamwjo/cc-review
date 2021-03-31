@@ -8,8 +8,7 @@ export default class SearchContainer extends Component {
 
 
     state = {
-        wizards: [],
-        searchText: ""
+        wizards: []
     }
 
 
@@ -19,26 +18,20 @@ export default class SearchContainer extends Component {
         this.setState({ wizards })
     }
 
-    filterWizards = () => this.state.wizards.filter(wiz => wiz.name.includes(this.state.searchText))
-
-    addNewWiz = (newWiz) => this.setState({wizards: [newWiz, ...this.state.wizards]})
-
-
-
-
+  
     render(){
         
    
         return (
             <div className="container mt-5">
-                <WizForm addNewWiz={this.addNewWiz}/>
+                <WizForm/>
                 <div className="form-group">
                     <label htmlFor="search-text">Search by House:</label>
-                    <input onChange={(event) => {this.setState({searchText: event.target.value})}} type="text" className="form-control" id="search-text" placeholder="gryffindor sucks"/>
+                    <input type="text" className="form-control" id="search-text" placeholder="gryffindor sucks"/>
                 </div>
                
                 <div className="row justify-content-md-center">
-                    {this.filterWizards().map(
+                    {this.state.wizards.map(
                         wizard => <StudentCard wizard={wizard} key={wizard.id} />
                     )}
                 </div>
